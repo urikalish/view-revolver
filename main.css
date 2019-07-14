@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+main {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #000;
+    overflow: hidden;
+}
+
+iframe {
+    width: 1920px;
+    height: 1200px;
+    position: absolute;
+    left: calc(50vw - 960px);
+    top: calc(50vh - 600px);
+    transition: 0.5s linear all;
+}
+
+iframe body {
+    text-align: center;
+}
+
+.show {
+    opacity: 1;
+}
+
+.hide {
+    opacity: 0;
+}

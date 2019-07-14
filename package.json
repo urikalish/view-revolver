@@ -1,0 +1,27 @@
+{
+  "name": "view-revolver",
+  "version": "1.0.0",
+  "description": "view-revolver",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/urikalish/view-revolver.git"
+  },
+  "keywords": [
+    "revolver"
+  ],
+  "author": "Uri Kalish",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/urikalish/view-revolver/issues"
+  },
+  "homepage": "https://github.com/urikalish/view-revolver#readme",
+  "devDependencies": {
+    "http-server": "^0.11.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.14"
+  }
+}
