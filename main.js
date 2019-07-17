@@ -6,6 +6,14 @@ const initViews = () => {
 		v.height = v.height || settings.defaults.height;
 	});
 };
+const showView = (view) => {
+	view.containerElm.classList.remove('hide');
+	view.containerElm.classList.add('show');
+};
+const hideView = (view) => {
+	view.containerElm.classList.remove('show');
+	view.containerElm.classList.add('hide');
+};
 const createTextElm = (view) => {
 	const elm = document.createElement('div');
 	elm.style.width = view.width + 'px';
@@ -69,22 +77,20 @@ const loadView = (ind) => {
 	const h = obj.view.height;
 	obj.elm.style['left'] = `calc(50vw - ${w/2}px`;
 	obj.elm.style['top'] = `calc(50vh - ${h/2}px`;
-	const viewContainerElm = document.createElement('div');
-	viewContainerElm.classList.add('view-container');
-	viewContainerElm.classList.add('view-container-' + obj.view.kind);
-	viewContainerElm.classList.add('hide');
-	viewContainerElm.appendChild(obj.elm);
-	document.getElementById('main').appendChild(viewContainerElm);
+	obj.containerElm = document.createElement('div');
+	obj.containerElm.classList.add('view-container');
+	obj.containerElm.classList.add('view-container-' + obj.view.kind);
+	obj.containerElm.classList.add('hide');
+	obj.containerElm.appendChild(obj.elm);
+	document.getElementById('main').appendChild(obj.containerElm);
 	return obj;
 };
 const toggleView = (oldView, newView) => {
-	newView.elm.parentElement.classList.remove('hide');
-	newView.elm.parentElement.classList.add('show');
+	showView(newView);
 	if (oldView) {
-		oldView.elm.parentElement.classList.remove('show');
-		oldView.elm.parentElement.classList.add('hide');
+		hideView(oldView);
 		setTimeout(() => {
-			oldView.elm.parentElement.parentNode.removeChild(oldView.elm.parentNode);
+			oldView.containerElm.parentNode.removeChild(oldView.containerElm);
 		}, 2000);
 	}
 	setTimeout(() => {
