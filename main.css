@@ -4,7 +4,7 @@
 
 html,
 body,
-main {
+.main {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -13,16 +13,32 @@ main {
     overflow: hidden;
 }
 
-iframe {
-    width: 1920px;
-    height: 1200px;
+.view {
     position: absolute;
-    left: calc(50vw - 960px);
-    top: calc(50vh - 600px);
     transition: 0.5s linear all;
 }
 
-iframe body {
+.view-text {
+    font-family: helvetica, sans-serif;
+}
+
+.big {
+    padding: 10px;
+    font-size: 60px;
+    color: #333;
+}
+
+.small {
+    padding: 10px;
+    font-size: 30px;
+    color: #999;
+}
+
+.view-image {
+
+}
+
+.view-frame body {
     text-align: center;
 }
 
@@ -32,4 +48,8 @@ iframe body {
 
 .hide {
     opacity: 0;
+}
+
+.inline-block {
+    display: inline-block;
 }
