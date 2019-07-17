@@ -6,7 +6,7 @@ const initViews = () => {
 		v.height = v.height || settings.defaults.height;
 	});
 };
-const loadText = (view) => {
+const createTextElm = (view) => {
 	const elm = document.createElement('div');
 	elm.style.width = view.width + 'px';
 	elm.style.height = view.height + 'px';
@@ -22,18 +22,16 @@ const loadText = (view) => {
 		textSmallElm.innerText = view.textSmall;
 		elm.appendChild(textSmallElm);
 	}
-	document.getElementById('main').appendChild(elm);
 	return elm;
 };
-const loadImage = (view) => {
+const createImageElm = (view) => {
 	const elm = document.createElement('img');
 	elm.style.width = view.width + 'px';
 	elm.style.height = view.height + 'px';
 	elm.src = view.src;
-	document.getElementById('main').appendChild(elm);
 	return elm;
 };
-const loadFrame = (view) => {
+const createFrameElm = (view) => {
 	const elm = document.createElement('iframe');
 	const w = view.width;
 	const h = view.height;
@@ -43,7 +41,6 @@ const loadFrame = (view) => {
 	elm.setAttribute('frameborder', '0');
 	elm.setAttribute('allowfullscreen', 'true');
 	elm.src = view.src || 'about:blank';
-	document.getElementById('main').appendChild(elm);
 	return elm;
 };
 const loadView = (ind) => {
@@ -53,36 +50,41 @@ const loadView = (ind) => {
 	};
 	switch (obj.view.kind) {
 		case 'text': {
-			obj.elm = loadText(obj.view);
+			obj.elm = createTextElm(obj.view);
 			break;
 		}
 		case 'image': {
-			obj.elm = loadImage(obj.view);
+			obj.elm = createImageElm(obj.view);
 			break;
 		}
 		case 'frame':
 		default: {
-			obj.elm = loadFrame(obj.view);
+			obj.elm = createFrameElm(obj.view);
 			break;
 		}
 	}
-	obj.elm.classList.add('hide');
 	obj.elm.classList.add('view');
 	obj.elm.classList.add('view-' + obj.view.kind);
 	const w = obj.view.width;
 	const h = obj.view.height;
 	obj.elm.style['left'] = `calc(50vw - ${w/2}px`;
 	obj.elm.style['top'] = `calc(50vh - ${h/2}px`;
+	const viewContainerElm = document.createElement('div');
+	viewContainerElm.classList.add('view-container');
+	viewContainerElm.classList.add('view-container-' + obj.view.kind);
+	viewContainerElm.classList.add('hide');
+	viewContainerElm.appendChild(obj.elm);
+	document.getElementById('main').appendChild(viewContainerElm);
 	return obj;
 };
 const toggleView = (oldView, newView) => {
-	newView.elm.classList.remove('hide');
-	newView.elm.classList.add('show');
+	newView.elm.parentElement.classList.remove('hide');
+	newView.elm.parentElement.classList.add('show');
 	if (oldView) {
-		oldView.elm.classList.remove('show');
-		oldView.elm.classList.add('hide');
+		oldView.elm.parentElement.classList.remove('show');
+		oldView.elm.parentElement.classList.add('hide');
 		setTimeout(() => {
-			oldView.elm.parentNode.removeChild(oldView.elm);
+			oldView.elm.parentElement.parentNode.removeChild(oldView.elm.parentNode);
 		}, 2000);
 	}
 	setTimeout(() => {
@@ -93,4 +95,5 @@ const toggleView = (oldView, newView) => {
 	}, 1000);
 };
 initViews();
-toggleView(null, loadView(0));
+const firstView = loadView(0);
+toggleView(null, firstView);

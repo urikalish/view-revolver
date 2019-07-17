@@ -13,9 +13,13 @@ body,
     overflow: hidden;
 }
 
+.view-container {
+    height: 100%;
+    transition: 0.5s linear all;
+}
+
 .view {
     position: absolute;
-    transition: 0.5s linear all;
 }
 
 .view-text {
@@ -35,7 +39,6 @@ body,
 }
 
 .view-image {
-
 }
 
 .view-frame body {

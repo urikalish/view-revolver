@@ -8,11 +8,11 @@ const settings = {
 	views: [
 		{
 			kind: 'text',
-			textBig: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-			textSmall: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+			textBig: 'Lorem ipsum dolor sit amet',
+			textSmall: 'Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 			width: 1000,
-			height: 500,
-			displayTime: 50000,
+			height: 300,
+			displayTime: 5,
 		},
 		{
 			kind: 'image',
